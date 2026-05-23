@@ -1,0 +1,33 @@
+name: Build and Push Lab Images
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push sender
+        uses: docker/build-push-action@v4
+        with:
+          context: ./docker/sender
+          push: true
+          tags: boy572k4-blip/steg_lsb-png.sender.student:latest
+
+      - name: Build and push receiver
+        uses: docker/build-push-action@v4
+        with:
+          context: ./docker/receiver
+          push: true
+          tags: boy572k4-blip/steg_lsb-png.receiver.student:latest
