@@ -1,0 +1,22 @@
+LAB_MASTER_SEED=steg_lsb_png_seed_2024
+FROM_TAG=labtainer.base
+
+NETWORK steg_network 172.21.0.0/24 MASK 24
+
+CONTAINER sender
+    TERMINALS 1
+    X11 YES
+    HOST_HOME /root/steg_lab
+    DOCKER_REGISTRY r3xonx
+    IMAGE_NAME steg_lsb-png.sender
+    REUSE_CONTAINER NO
+END_CONTAINER
+
+CONTAINER receiver
+    TERMINALS 1
+    X11 YES
+    HOST_HOME /root/steg_lab
+    DOCKER_REGISTRY r3xonx
+    IMAGE_NAME steg_lsb-png.receiver
+    REUSE_CONTAINER NO
+END_CONTAINER
