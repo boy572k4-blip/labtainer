@@ -23,11 +23,11 @@ jobs:
         with:
           context: ./docker/sender
           push: true
-          tags: boy572k4-blip/steg_lsb-png.sender.student:latest
+          tags: r3xonx/steg_lsb-png.sender.student:latest
 
       - name: Build and push receiver
         uses: docker/build-push-action@v4
         with:
           context: ./docker/receiver
           push: true
-          tags: boy572k4-blip/steg_lsb-png.receiver.student:latest
+          tags: r3xonx/steg_lsb-png.receiver.student:latest
