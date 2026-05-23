@@ -1,13 +1,12 @@
-FROM $registry/labtainer.base
+FROM $registry/labtainer.network.ssh
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
-    openssh-server \
     && pip3 install Pillow numpy scipy \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /root/steg_lab /var/run/sshd
+RUN mkdir -p /root/steg_lab
 ADD receiver/ /root/steg_lab/
-RUN chmod +x /root/steg_lab/*.py /root/steg_lab/fixlocal.sh 2>/dev/null || true
+RUN chmod +x /root/steg_lab/*.py /root/steg_lab/*.sh 2>/dev/null || true
